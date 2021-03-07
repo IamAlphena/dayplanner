@@ -27,7 +27,17 @@ Global Variable
 var today = moment().format('dddd MMMM Do YYYY');
 var currentTime = moment().format('HH mm');
 
-var activeHours = ['9', '10', '11', '12', '13', '14', '15', '16', '17'];
+var activeHours = [
+    {hour: '9'}, 
+    {hour:'10'}, 
+    {hour: '11'},
+    {hour: '12'}, 
+    {hour: '13'}, 
+    {hour:'14'},
+    {hour: '15'}, 
+    {hour:'16'}, 
+    {hour:'17'},
+];
 
 
 /*
@@ -50,14 +60,13 @@ activeHours.forEach(function (dewIt){
     var planDay = $('.container');
     var hourRow = $('<div>');
     hourRow.addClass("row");
-    planDay.append(hourRow);
-
-    
+    // planDay.append(hourRow);
     
     var hourList = $('<div>');
     hourList.addClass(" col-md-1 hour");
-    hourList.text(activeHours);
-    planDay.append(hourList);
+    hourList.text(activeHours.hour);
+    hourRow.append(hourList);
+    planDay.append(hourRow);
 });
 
 // row 
