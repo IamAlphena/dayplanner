@@ -27,12 +27,24 @@ Global Variable
 var today = moment().format('dddd MMMM Do YYYY');
 var currentTime = moment().format('HH m');
 
-var hours = []
+var activeHours = ['9', '10', '11', '12', '13', '14', '15', '16', '17'];
+
+
+
 
 /*
 Functions
 */
-console.log(today);
+
+  // create div per hour we're interested in, represented inside arr- activeHours
+for (i = 0; i <activeHours.length; i++){
+    element = document.createElement('div');
+    element.className = ' row hour';
+    element.innerHTML = activeHours[i];
+    document.getElementsByClassName('container')[0].appendChild(element);
+}
+
+
 
 /*
 Events
