@@ -25,24 +25,45 @@ Global Variable
 */
 
 var today = moment().format('dddd MMMM Do YYYY');
-var currentTime = moment().format('HH m');
+var currentTime = moment().format('HH mm');
 
 var activeHours = ['9', '10', '11', '12', '13', '14', '15', '16', '17'];
-
-
 
 
 /*
 Functions
 */
 
-  // create div per hour we're interested in, represented inside arr- activeHours
-for (i = 0; i <activeHours.length; i++){
-    element = document.createElement('div');
-    element.className = ' row hour';
-    element.innerHTML = activeHours[i];
-    document.getElementsByClassName('container')[0].appendChild(element);
+// adds day to top of page
+
+function revealTime(){
+    var headerDate = moment().format('dddd MMMM Do YYYY HH mm');
+    $("#currentDay").text(headerDate);
 }
+
+revealTime()
+
+// generate each hour's spaces
+
+
+activeHours.forEach(function (dewIt){ 
+    var planDay = $('.container');
+    var hourRow = $('<div>');
+    hourRow.addClass("row");
+    planDay.append(hourRow);
+
+    
+    
+    var hourList = $('<div>');
+    hourList.addClass(" col-md-1 hour");
+    hourList.text(activeHours);
+    planDay.append(hourList);
+});
+
+// row 
+// hours 
+// entry
+// saveBtn
 
 
 
