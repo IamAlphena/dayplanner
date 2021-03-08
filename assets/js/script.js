@@ -63,7 +63,6 @@ var activeHours = [
 var savedEvent = JSON.parse(localStorage.getItem('savedEvent')) || [];
 
 // adds day to top of page
-
 function revealTime(){
     var headerDate = moment().format('dddd MMMM Do YYYY HH mm');
     $("#currentDay").text(headerDate);
