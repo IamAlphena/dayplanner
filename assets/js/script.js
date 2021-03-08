@@ -1,19 +1,4 @@
 
-//On Page Load, Current Day and Time is displayed 
-
-// timeblocks for standard business hours 
-    //  9 - 17
-
-// Timeblock dynamically pulls from CSS
-    // logic loop to apply css 
-    // past / present / future classes
-
-//Click on block
-    //eventListener 'click' per div
-
-//Enter event
-    // widget? or through text entry
-
 //Save events in local storage
     //json stringify 
 
@@ -53,6 +38,9 @@ var activeHours = [
     {hour: '22',},
     {hour: '23',},
 ];
+
+// var saveBtn = document.querySelector("#saveBtn")
+var savedEvent = JSON.parse(localStorage.getItem('savedEvent')) || [];
 
 /*
 Functions
@@ -106,11 +94,35 @@ activeHours.forEach(function (dewIt){
     //adds the save buttons to the rows
     //creates the new element
     var saveEvent = $('<button>');
-    //adds the css to the element
+    // add icon to files
+    var saveIcon = $('<i class="far fa-save">');
+    //adds the css to the button
     saveEvent.addClass('col-1 saveBtn');
-    //adds element to the page
+    //adds icon to button
+    saveEvent.append(saveIcon);
+    //adds button to the page
     hourRow.append(saveEvent);
 });
+
+// Update schedule information
+// function updateSchedule(event){
+//     //prevent default (refresh)
+//     event.preventDefault();
+//     //record information inside hourEvent to local storage
+//     // var scheduledEvent = {
+//     //     hour: activeHours[i],
+//     //     event: hourEvent.value,
+//     // };
+
+//     console.log("Hello");
+// };
+
+var saveBtn = $('#saveBtn');
+
+
+$(".saveBtn").on('click', function(event){
+    console.log("helo")
+})
 
 
 /*
@@ -118,7 +130,7 @@ Events
 */
 
 // event listener on saveBtn 
-
+// saveBtn.on('click', '.saveBtn', updateSchedule);
 
 /*
 Entry Points
