@@ -5,46 +5,62 @@
 // refresh page, events persist
     // parse and print
 
-/*
-Global Variable
-*/
-
 var today = moment().format('dddd MMMM Do YYYY');
 var currentTime = moment().format('HH');
 
 var activeHours = [
-    // {hour: '00',},
-    // {hour: '01',},
-    // {hour: '02',},
-    // {hour: '03',},
-    // {hour: '04',},
-    // {hour: '05',},
-    // {hour: '06',},
-    // {hour: '07',},
-    // {hour: '08',},
-    // {hour: '09',}, 
-    // {hour: '10',}, 
-    // {hour: '11',},
-    // {hour: '12',}, 
-    // {hour: '13',}, 
-    // {hour: '14',},
-    // {hour: '15',}, 
-    {hour: '16',}, 
-    {hour: '17',},
-    {hour: '18',},
-    {hour: '19',},
-    {hour: '20',},
-    {hour: '21',},
-    {hour: '22',},
-    {hour: '23',},
+    {hour: '00',
+    schedule: '',},
+    {hour: '01',
+    schedule: '',},
+    {hour: '02',
+    schedule: '',},
+    {hour: '03',
+    schedule: '',},
+    {hour: '04',
+    schedule: '',},
+    {hour: '05',
+    schedule: '',},
+    {hour: '06',
+    schedule: '',},
+    {hour: '07',
+    schedule: '',},
+    {hour: '08',
+    schedule: '',},
+    {hour: '09',
+    schedule: '',}, 
+    {hour: '10',
+    schedule: '',}, 
+    {hour: '11',
+    schedule: '',},
+    {hour: '12',
+    schedule: '',}, 
+    {hour: '13',
+    schedule: '',}, 
+    {hour: '14',
+    schedule: '',},
+    {hour: '15',
+    schedule: '',}, 
+    {hour: '16',
+    schedule: '',}, 
+    {hour: '17',
+    schedule: '',},
+    {hour: '18',
+    schedule: '',},
+    {hour: '19',
+    schedule: '',},
+    {hour: '20',
+    schedule: '',},
+    {hour: '21',
+    schedule: '',},
+    {hour: '22',
+    schedule: '',},
+    {hour: '23',
+    schedule: '',},
 ];
 
 // var saveBtn = document.querySelector("#saveBtn")
 var savedEvent = JSON.parse(localStorage.getItem('savedEvent')) || [];
-
-/*
-Functions
-*/
 
 // adds day to top of page
 
@@ -121,17 +137,6 @@ var saveBtn = $('#saveBtn');
 
 
 $(".saveBtn").on('click', function(event){
-    console.log("helo")
+    var scheduledEvent = $(this).siblings(".description").value;
+    console.log(scheduledEvent);
 })
-
-
-/*
-Events
-*/
-
-// event listener on saveBtn 
-// saveBtn.on('click', '.saveBtn', updateSchedule);
-
-/*
-Entry Points
-*/
