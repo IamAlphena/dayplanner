@@ -5,7 +5,7 @@ keep track of your work day plans with this planner, that saves the information 
 
 ## Preview
 
-![Preview Image](https://github.com/IamAlphena/quizgame/blob/main/assets/images/quiz1.PNG?raw=true)
+![Preview Image](https://github.com/IamAlphena/dayplanner/blob/main/assets/images/planner.PNG?raw=true)
 
 
 ## Links
