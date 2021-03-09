@@ -46,7 +46,7 @@ for (let i = 0; i < activeHours.length; i++){
     //sets index points for savedEvent 
     for(let j = 0; j < savedEvent.length; j++){
         //compares the indexed points of activeHours and savedEvent to find the matching
-        if(activeHours[i].hour === savedEvent[j].numArea){
+        if(activeHours[i].hour === savedEvent[j].numId){
             //replace activeHours.schedule with savedEvent.information
             activeHours[i].schedule = savedEvent[j].information;
         };
@@ -54,7 +54,7 @@ for (let i = 0; i < activeHours.length; i++){
 };
 
 // generate each hour's spaces on the page
-activeHours.forEach(function (dewIt){ 
+activeHours.forEach(function (dailyPlan){ 
     //creates the rows to populate  
     //defines the area we want to interact with
     var planDay = $('.container');
@@ -71,7 +71,7 @@ activeHours.forEach(function (dewIt){
     //adds the css to the element
     hourList.addClass("col-1 hour");
     //pulls the indvidual text from the array, based on the key
-    hourList.text(dewIt.hour);
+    hourList.text(dailyPlan.hour);
     //creates the new element on the page
     hourRow.append(hourList);
    
@@ -79,15 +79,15 @@ activeHours.forEach(function (dewIt){
     // creates the new element
     var hourEvent = $('<textarea>');
     //dynamically add css based on if the hour is before, ===, or after the currentTime
-    if(dewIt.hour === currentTime){
+    if(dailyPlan.hour === currentTime){
         hourEvent.addClass("col-10 time-block description present")
-    }else if(dewIt.hour > currentTime) {
+    }else if(dailyPlan.hour > currentTime) {
         hourEvent.addClass("col-10 time-block description future")
-    }else if(dewIt.hour < currentTime){
+    }else if(dailyPlan.hour < currentTime){
         hourEvent.addClass("col-10 time-block description past")
     };
     //pull the saved data for the .textcontent
-    hourEvent.text(dewIt.schedule);
+    hourEvent.text(dailyPlan.schedule);
     //adds the element to the page
     hourRow.append(hourEvent);
     
@@ -114,7 +114,7 @@ $(".saveBtn").on('click', function(event){
     //collect the event information and the hour it's attached to:
     var scheduledEvent = {
         information: $(this).siblings("textarea").val(),
-        numArea: $(this).siblings(".hour").text(),
+        numId: $(this).siblings(".hour").text(),
     };
 
     //push the saved information to storage
