@@ -1,32 +1,11 @@
-
-//Save events in local storage
-    //json stringify 
-
-// refresh page, events persist
-    // parse and print
+/*
+Global Variables
+*/
 
 var today = moment().format('dddd MMMM Do YYYY');
 var currentTime = moment().format('HH');
 
 var activeHours = [
-    {hour: '00',
-    schedule: '',},
-    {hour: '01',
-    schedule: '',},
-    {hour: '02',
-    schedule: '',},
-    {hour: '03',
-    schedule: '',},
-    {hour: '04',
-    schedule: '',},
-    {hour: '05',
-    schedule: '',},
-    {hour: '06',
-    schedule: '',},
-    {hour: '07',
-    schedule: '',},
-    {hour: '08',
-    schedule: '',},
     {hour: '09',
     schedule: '',}, 
     {hour: '10',
@@ -45,22 +24,13 @@ var activeHours = [
     schedule: '',}, 
     {hour: '17',
     schedule: '',},
-    {hour: '18',
-    schedule: '',},
-    {hour: '19',
-    schedule: '',},
-    {hour: '20',
-    schedule: '',},
-    {hour: '21',
-    schedule: '',},
-    {hour: '22',
-    schedule: '',},
-    {hour: '23',
-    schedule: '',},
 ];
 
-// var saveBtn = document.querySelector("#saveBtn")
 var savedEvent = JSON.parse(localStorage.getItem('savedEvent')) || [];
+
+/*
+Functions
+*/
 
 // adds day to top of page
 function revealTime(){
@@ -69,6 +39,19 @@ function revealTime(){
 }
 
 revealTime()
+
+//moving information from savedEvent to activeHours
+//sets index points for activeHours
+for (let i = 0; i < activeHours.length; i++){ 
+    //sets index points for savedEvent 
+    for(let j = 0; j < savedEvent.length; j++){
+        //compares the indexed points of activeHours and savedEvent to find the matching
+        if(activeHours[i].hour === savedEvent[j].numArea){
+            //replace activeHours.schedule with savedEvent.information
+            activeHours[i].schedule = savedEvent[j].information;
+        };
+    };
+};
 
 // generate each hour's spaces on the page
 activeHours.forEach(function (dewIt){ 
@@ -97,12 +80,14 @@ activeHours.forEach(function (dewIt){
     var hourEvent = $('<textarea>');
     //dynamically add css based on if the hour is before, ===, or after the currentTime
     if(dewIt.hour === currentTime){
-        hourEvent.addClass("col-10 description present")
+        hourEvent.addClass("col-10 time-block description present")
     }else if(dewIt.hour > currentTime) {
-        hourEvent.addClass("col-10 description future")
+        hourEvent.addClass("col-10 time-block description future")
     }else if(dewIt.hour < currentTime){
-        hourEvent.addClass("col-10 description past")
+        hourEvent.addClass("col-10 time-block description past")
     };
+    //pull the saved data for the .textcontent
+    hourEvent.text(dewIt.schedule);
     //adds the element to the page
     hourRow.append(hourEvent);
     
@@ -119,23 +104,20 @@ activeHours.forEach(function (dewIt){
     hourRow.append(saveEvent);
 });
 
-// Update schedule information
-// function updateSchedule(event){
-//     //prevent default (refresh)
-//     event.preventDefault();
-//     //record information inside hourEvent to local storage
-//     // var scheduledEvent = {
-//     //     hour: activeHours[i],
-//     //     event: hourEvent.value,
-//     // };
 
-//     console.log("Hello");
-// };
-
-var saveBtn = $('#saveBtn');
-
-
+// function design to save events
+//for the save buttons, listen for click, then run function on that event
 $(".saveBtn").on('click', function(event){
-    var scheduledEvent = $(this).siblings(".description").value;
-    console.log(scheduledEvent);
-})
+    //prevent default (reload)
+    event.preventDefault();
+
+    //collect the event information and the hour it's attached to:
+    var scheduledEvent = {
+        information: $(this).siblings("textarea").val(),
+        numArea: $(this).siblings(".hour").text(),
+    };
+
+    //push the saved information to storage
+    savedEvent.push(scheduledEvent);
+    localStorage.setItem('savedEvent',JSON.stringify(savedEvent));
+});
